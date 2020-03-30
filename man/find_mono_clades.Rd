@@ -4,12 +4,14 @@
 \alias{find_mono_clades}
 \title{Find monophyletic clades}
 \usage{
-find_mono_clades(tre, ids)
+find_mono_clades(tre, ids, return = "all")
 }
 \arguments{
 \item{tre}{A phylo object}
 
 \item{ids}{A vector of tip labels or node IDs}
+
+\item{return}{Either "all" nodes or "outgroup" and tips.}
 }
 \value{
 A list of numeric vectors where each vector is the
