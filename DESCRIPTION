@@ -3,7 +3,8 @@ Title: Analysing mutations in phylogeny
 Version: 0.0-1
 Imports:
   magrittr (>= 1.5),
-  phangorn (>= 2.5.5)
+  phangorn (>= 2.5.5),
+  castor(>= 1.5.5)
 Authors@R: 
     person(given = "Sur",
            family = "Herrera Paredes",
