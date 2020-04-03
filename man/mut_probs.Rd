@@ -4,7 +4,7 @@
 \alias{mut_probs}
 \title{Mutation probabilities}
 \usage{
-mut_probs(tree, aln, anc)
+mut_probs(tree, aln, anc, root_id = NULL, tips = NULL)
 }
 \arguments{
 \item{anc}{}

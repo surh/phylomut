@@ -8,16 +8,27 @@
 #' @export
 #'
 #' @importFrom magrittr %>%
-mut_probs <- function(tree, aln, anc){
+mut_probs <- function(tree, aln, anc, root_id = NULL, tips = NULL){
   # get root seq
-  root_id <- as.character(castor::find_root(tree))
+  if(is.null(root_id)){
+    root_id <- as.character(castor::find_root(tree))
+  }else{
+    root_id <- as.character(root_id)
+  }
   root_seq <- anc[[as.character(root_id)]]
   colnames(root_seq) <- levels(anc)
   root_seq <- root_seq %>% tibble::as_tibble() %>%
     dplyr::mutate(position = 1:nrow(root_seq))
 
   # Get tip distribution
-  Tips <- tree$tip.label %>%
+  if(is.null(tips)){
+    tips <- tree$tip.label
+  }else if(is.numeric(tips)){
+    tips <- tree$tip.label[tips]
+  }else if(!is.character(tips)){
+    stop("ERROR: tips must be numeric, character or null.", call. = TRUE)
+  }
+  Tips <- tips %>%
     purrr::map_dfr(function(label, anc){
       res <- anc[[label]]
       res <- res / rowSums(res)
